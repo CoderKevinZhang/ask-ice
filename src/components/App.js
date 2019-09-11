@@ -1,14 +1,21 @@
 import React from 'react';
 import '../styles/App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <div className="app-content-body">
-        
+class App extends React.Component {
+
+  render() {
+    return (
+      <div className="App">
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input type="text" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

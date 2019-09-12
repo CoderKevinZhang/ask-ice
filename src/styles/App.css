@@ -1,3 +1,20 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 70%;
+  height: 500px;
+  border: 1px solid blue;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.form-content {
+  width: 40%;
+  border: 1px solid red;
+}
+
+.form-text-area {
+  width: 440px;
+  margin-top: 20px;
 }

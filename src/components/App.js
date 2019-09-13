@@ -26,7 +26,7 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.validateInput()) {
-
+      // fetch operation
     }
 
   }

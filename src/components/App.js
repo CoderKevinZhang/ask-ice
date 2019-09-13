@@ -6,7 +6,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       subject: "",
-      body: ""
+      body: "",
+      isShowed: true
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,6 +28,9 @@ class App extends React.Component {
     event.preventDefault();
     if (this.validateInput()) {
       // fetch operation
+      this.setState({
+        isShowed: false
+      });
     }
 
   }
@@ -49,18 +53,26 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <form className="form-content" onSubmit={this.handleSubmit}>
-          <div>
-            Subject: <input type="text" size="60" name="subject" value={this.state.subject} onChange={this.handleChange} />
-          </div>
-          <textarea className="form-text-area" rows="10" cols="30" name="body" value={this.state.body} onChange={this.handleChange} placeholder="Enter text here..." />
-          <div>
-            <input type="submit" value="Submit" />
-          </div>
-        </form>
+        {this.state.isShowed ? 
+          <form className="form-content" onSubmit={this.handleSubmit}>
+            <div>
+              Subject: <input type="text" size="60" name="subject" value={this.state.subject} onChange={this.handleChange} />
+            </div>
+            <textarea className="form-text-area" rows="10" cols="30" name="body" value={this.state.body} onChange={this.handleChange} placeholder="Enter content here..." />
+            <div>
+              <input type="submit" value="Submit" />
+            </div>
+          </form> : 
+          <Content />}
       </div>
     );
   }
 }
+
+const Content = () => (
+  <div className='modal'>
+        Hello, World!
+    </div>
+  )
 
 export default App;

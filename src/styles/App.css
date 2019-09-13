@@ -10,11 +10,11 @@
 }
 
 .form-content {
-  width: 40%;
+  width: 60%;
   border: 1px solid red;
 }
 
 .form-text-area {
   width: 440px;
-  margin-top: 20px;
+  margin-top: 10px;
 }

@@ -6,8 +6,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       subject: "",
-      body: "",
-      errors: {}
+      body: ""
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +32,18 @@ class App extends React.Component {
   }
 
   validateInput() {
-    
+    let validation = true;
+
+    if (this.state.subject === "") {
+      validation = false;
+      alert("Subject cannot be NULL");
+    }
+    else if (this.state.body === "") {
+      validation = false;
+      alert("Body cannot be NULL");
+    }
+
+    return validation;
   }
 
   render() {

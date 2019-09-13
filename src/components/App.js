@@ -6,7 +6,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       subject: "",
-      body: "Enter text here..."
+      body: "",
+      errors: {}
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,8 +25,15 @@ class App extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(this.state.body);
     event.preventDefault();
+    if (this.validateInput()) {
+
+    }
+
+  }
+
+  validateInput() {
+
   }
 
   render() {
@@ -35,7 +43,7 @@ class App extends React.Component {
           <div>
             Subject: <input type="text" size="60" name="subject" value={this.state.subject} onChange={this.handleChange} />
           </div>
-          <textarea className="form-text-area" rows="10" cols="30" name="body" value={this.state.body} onChange={this.handleChange} />
+          <textarea className="form-text-area" rows="10" cols="30" name="body" value={this.state.body} onChange={this.handleChange} placeholder="Enter text here..." />
           <div>
             <input type="submit" value="Submit" />
           </div>

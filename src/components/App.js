@@ -1,5 +1,10 @@
 import React from 'react';
+import Content from './Content';
+
 import '../styles/App.css';
+
+const ACCESS_URL = 'https://uswestcentral.services.azureml.net/workspaces/544c0b985fd74c98ab71cadee4755b8c/services/0b49d6c527f24641ad2c3cbafc20ecef/execute?api-version=2.0&details=true';
+const ACCESS_TOKEN = 'nTSuHIR1nRO2A+UD21DgnAayU+1ptmCYqMiAz9cL2E6wG6ysR74/jFtja+k+9tOLEnovOx9ioNpDICu8RsXYzA==';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,10 +32,40 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.validateInput()) {
-      // fetch operation
       this.setState({
         isShowed: false
       });
+      
+      let subject = this.state.subject;
+      let body = this.state.body;
+
+      // fetch operation
+      fetch (ACCESS_URL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + {ACCESS_TOKEN},
+          'Content-Type': 'application/json',
+          'Content-Length': '450'
+        },
+        body: JSON.stringify({
+          "Inputs": {
+            "input": {
+              "ColumnNames": [
+                "subject",
+                "body"
+              ],
+              "Values": [
+                [
+                  subject,
+                  body
+                ]
+              ]
+            }
+          },
+          "GlobalParameters": {}
+        })
+      })
     }
 
   }
@@ -53,7 +88,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {this.state.isShowed ? 
+        {this.state.isShowed ?
           <form className="form-content" onSubmit={this.handleSubmit}>
             <div>
               Subject: <input type="text" size="60" name="subject" value={this.state.subject} onChange={this.handleChange} />
@@ -62,19 +97,12 @@ class App extends React.Component {
             <div>
               <input type="submit" value="Submit" />
             </div>
-          </form> : 
+          </form> :
           <Content state={this.state} />
         }
       </div>
     );
   }
 }
-
-const Content = (props) => (
-  <div className='modal'>
-        <h1>{props.state.subject}</h1>
-        <h3>{props.state.body}</h3>
-    </div>
-  )
 
 export default App;

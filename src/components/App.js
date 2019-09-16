@@ -62,7 +62,7 @@ class App extends React.Component {
             <div>
               <input type="submit" value="Submit" />
             </div>
-          </form> : 
+          </form>
           <Content state={this.state} />}
       </div>
     );

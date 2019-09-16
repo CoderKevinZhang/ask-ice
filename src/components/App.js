@@ -62,8 +62,9 @@ class App extends React.Component {
             <div>
               <input type="submit" value="Submit" />
             </div>
-          </form>
-          <Content state={this.state} />}
+          </form> : 
+          <Content state={this.state} />
+        }
       </div>
     );
   }

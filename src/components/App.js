@@ -63,15 +63,16 @@ class App extends React.Component {
               <input type="submit" value="Submit" />
             </div>
           </form> : 
-          <Content />}
+          <Content state={this.state} />}
       </div>
     );
   }
 }
 
-const Content = () => (
+const Content = (props) => (
   <div className='modal'>
-        Hello, World!
+        <h1>{props.state.subject}</h1>
+        <h3>{props.state.body}</h3>
     </div>
   )
 

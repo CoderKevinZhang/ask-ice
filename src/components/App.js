@@ -4,7 +4,7 @@ import Content from './Content';
 import '../styles/App.css';
 
 const ACCESS_URL = 'https://uswestcentral.services.azureml.net/workspaces/544c0b985fd74c98ab71cadee4755b8c/services/0b49d6c527f24641ad2c3cbafc20ecef/execute?api-version=2.0&details=true';
-const ACCESS_TOKEN = 'nTSuHIR1nRO2A+UD21DgnAayU+1ptmCYqMiAz9cL2E6wG6ysR74/jFtja+k+9tOLEnovOx9ioNpDICu8RsXYzA==';
+// const ACCESS_TOKEN = '';
 
 class App extends React.Component {
   constructor(props) {
@@ -38,36 +38,42 @@ class App extends React.Component {
       
       let subject = this.state.subject;
       let body = this.state.body;
+      let data = {
+        Inputs: {
+          input: {
+            ColumnNames: [
+              'subject',
+              'body'
+            ],
+            Values: [
+              'value',
+              'value'
+            ]
+          }
+        },
+        GlobalParameters: {}
+      };
 
-      // fetch operation
+      // fetch operation (TODO: read json file from .txt, not hard coding here)
       fetch (ACCESS_URL, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Bearer ' + {ACCESS_TOKEN},
+          'Authorization': 'Bearer nTSuHIR1nRO2A+UD21DgnAayU+1ptmCYqMiAz9cL2E6wG6ysR74/jFtja+k+9tOLEnovOx9ioNpDICu8RsXYzA==',
           'Content-Type': 'application/json',
-          'Content-Length': '450'
+          'Content-Length': '1200',
         },
-        body: JSON.stringify({
-          "Inputs": {
-            "input": {
-              "ColumnNames": [
-                "subject",
-                "body"
-              ],
-              "Values": [
-                [
-                  subject,
-                  body
-                ]
-              ]
-            }
-          },
-          "GlobalParameters": {}
-        })
+        body: JSON.stringify(data)
+      })
+      .then ((response) => {
+        if (response.ok) {
+          return response.json;
+        }
+      })
+      .then ((data) => {
+        console.log(data);
       })
     }
-
   }
 
   validateInput() {

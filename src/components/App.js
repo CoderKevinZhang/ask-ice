@@ -3,6 +3,9 @@ import Content from './Content';
 
 import '../styles/App.css';
 
+const ACCESS_URL = 'https://uswestcentral.services.azureml.net/workspaces/544c0b985fd74c98ab71cadee4755b8c/services/0b49d6c527f24641ad2c3cbafc20ecef/execute?api-version=2.0&details=true';
+const ACCESS_TOKEN = 'nTSuHIR1nRO2A+UD21DgnAayU+1ptmCYqMiAz9cL2E6wG6ysR74/jFtja+k+9tOLEnovOx9ioNpDICu8RsXYzA==';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +44,8 @@ class App extends React.Component {
               'body'
             ],
             "Values": [
-              ['value',
+              [
+                'value',
                 'value'
               ]
             ]
@@ -51,11 +55,11 @@ class App extends React.Component {
       };
 
       // fetch operation (TODO: read json file from .txt, not hard coding here)
-      fetch ('https://uswestcentral.services.azureml.net/workspaces/544c0b985fd74c98ab71cadee4755b8c/services/0b49d6c527f24641ad2c3cbafc20ecef/execute?api-version=2.0&details=true', {
+      fetch (ACCESS_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer nTSuHIR1nRO2A+UD21DgnAayU+1ptmCYqMiAz9cL2E6wG6ysR74/jFtja+k+9tOLEnovOx9ioNpDICu8RsXYzA=='          
+          'Authorization': 'Bearer ' + ACCESS_TOKEN
         },
         body: JSON.stringify(data)
       })

@@ -1,5 +1,6 @@
 import React from 'react';
 import Content from './Content';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../styles/App.css';
 
@@ -36,6 +37,9 @@ class App extends React.Component {
         isShowed: false
       });
 
+      let subject = this.state.subject;
+      let body = this.state.body;
+
       let data = {
         "Inputs": {
           "input": {
@@ -45,8 +49,8 @@ class App extends React.Component {
             ],
             "Values": [
               [
-                'value',
-                'value'
+                subject,
+                body
               ]
             ]
           }
@@ -69,7 +73,7 @@ class App extends React.Component {
         }
       })
       .then ((data) => {
-        console.log(data);
+        console.log(data["Results"]["output"]["value"]["Values"]);
       })
     }
   }
